@@ -1,0 +1,69 @@
+# Dependencies
+node_modules/
+jspm_packages/
+bower_components/
+
+# Debugging and logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Testing and coverage
+coverage/
+*.lcov
+.nyc_output
+
+# Build and Output directories
+dist/
+build/
+out/
+.next/
+.nuxt/
+.output/
+.vuepress/dist
+.docusaurus/
+.svelte-kit/
+.parcel-cache/
+.cache/
+html/
+
+# IDEs, editors, and OS-specific files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Environment variables and secrets (NEVER commit these)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Keep .env.example tracked if you use it to outline required keys
+!.env.example
+
+# TypeScript build info
+*.tsbuildinfo
+
+# Optional: Serverless directories
+.serverless/

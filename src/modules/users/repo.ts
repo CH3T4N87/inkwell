@@ -21,8 +21,8 @@ export const createUserRepo = (store: Map<string, User>) => {
         return newUser;
     }
 
-    const remove = (id: string): Promise<Boolean> => {
-        return Promise.resolve(true);
+    const remove = async (id: string): Promise<boolean> => {
+        return store.delete(id);
     }
 
     return {
