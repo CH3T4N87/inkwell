@@ -39,7 +39,7 @@ export const createUsersRouter = (store: Map<string, User>): Router => {
 
     //  POST /,
     userRouter.post("/", async (req: Request, res: Response, next: NextFunction) => {
-        const { name, email } = req.body;
+        const { name, email } = req.body ?? {};
         if (!name || !email) {
             return next(createAppError(400, "name and email are required"));
         }
