@@ -4,7 +4,7 @@ import type { Router, Request, Response, NextFunction } from "express";
 import type { User } from "./schema.js";
 import express from "express";
 import { createUserRepo } from "./repo.js";
-import { createUserService } from "./service.js";
+import { createUserService, type UserService } from "./service.js";
 import { createAppError } from "../../errors/app-error.js";
 
 // createUsersRouter(store: Map<string, User>): Router — builds the repo, builds the service, builds an express.Router(), 
@@ -15,10 +15,8 @@ import { createAppError } from "../../errors/app-error.js";
 // Handlers are async, await the service calls, no try/catch — let Express 5 forward the throws.
 // POST returns 201, everything else 200.
 
-export const createUsersRouter = (store: Map<string, User>): Router => {
+export const createUsersRouter = (service: UserService): Router => {
 
-    const repo = createUserRepo(store);
-    const service = createUserService(repo);
     const userRouter = express.Router();
 
     //GET

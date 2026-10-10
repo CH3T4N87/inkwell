@@ -5,6 +5,8 @@ import { errorHandler } from "./middlewares/errorHandler.js";
 import { requireHeader } from "./middlewares/requireHeader.js";
 import type { User } from "./modules/users/schema.js";
 import { createUsersRouter } from "./modules/users/routes.js";
+import { createUserRepo } from "./modules/users/repo.js";
+import { createUserService } from "./modules/users/service.js";
 
 const app = express();
 
@@ -21,7 +23,9 @@ app.get("/health", requireHeader("x-api-key"), (req: Request, res: Response) => 
 });
 
 const usersStore = new Map<string, User>();
-app.use("/users", createUsersRouter(usersStore));
+const usersRepo = createUserRepo(usersStore);
+const usersService = createUserService(usersRepo)
+app.use("/users", createUsersRouter(usersService));
 
 app.use(notFound);
 app.use(errorHandler);
