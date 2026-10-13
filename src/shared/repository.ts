@@ -14,7 +14,7 @@ export const createInMemoryRepository = <T extends Entity>(store: Map<string, T>
     }
 
     const create = async (input: Omit<T, keyof Entity>): Promise<T> => {
-        const newEntry = { id: crypto.randomUUID(), ...input, createdAt: new Date() } as T;
+        const newEntry = { ...input, id: crypto.randomUUID(), createdAt: new Date() } as T;
         store.set(newEntry.id, newEntry);
         return newEntry;
     }

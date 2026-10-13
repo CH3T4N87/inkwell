@@ -7,7 +7,6 @@ import type { User } from "./modules/users/schema.js";
 import { createUsersRouter } from "./modules/users/routes.js";
 import { createUserRepo } from "./modules/users/repo.js";
 import { createUserService } from "./modules/users/service.js";
-import { createInMemoryRepository } from "./shared/repository.js";
 
 const app = express();
 
