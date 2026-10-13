@@ -1,3 +1,5 @@
+// Promise, not proof: TS can't check a generic T, so this holds only if T's id is exactly string and createdAt exactly Date.
+
 interface Entity {
     id: string;
     createdAt: Date
