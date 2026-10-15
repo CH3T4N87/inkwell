@@ -1,9 +1,15 @@
+import z from "zod";
 
-export interface User {
-    id: string;
-    name: string;
-    email: string;
-    createdAt: Date
-}
+export const ZUser = z.object({
+    id: z.uuid(),
+    name: z.string().trim().nonempty(),
+    email: z.email(),
+    createdAt: z.date()
+})
+export type User = z.infer<typeof ZUser>;
 
-export type NewUser = Omit<User, "id" | "createdAt">;
+export const ZNewUser = ZUser.pick({
+    name: true,
+    email: true
+});
+export type NewUser = z.infer<typeof ZNewUser>;
