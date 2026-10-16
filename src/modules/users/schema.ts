@@ -4,7 +4,7 @@ export const ZUser = z.object({
     id: z.uuid(),
     name: z.string().trim().nonempty(),
     email: z.email(),
-    createdAt: z.date()
+    createdAt: z.date(),
 })
 export type User = z.infer<typeof ZUser>;
 
