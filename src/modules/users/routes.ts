@@ -2,6 +2,8 @@ import type { Router, Request, Response, NextFunction } from "express";
 import express from "express";
 import type { UserService } from "./service.js";
 import { createAppError } from "../../errors/app-error.js";
+import { validateBody } from "../../middlewares/validateBody.js";
+import { ZNewUser } from "./schema.js";
 
 export const createUsersRouter = (service: UserService): Router => {
 
@@ -24,12 +26,8 @@ export const createUsersRouter = (service: UserService): Router => {
     })
 
     //  POST /,
-    userRouter.post("/", async (req: Request, res: Response, next: NextFunction) => {
-        const { name, email } = req.body ?? {};
-        if (!name || !email) {
-            return next(createAppError(400, "name and email are required"));
-        }
-        const user = await service.createUser({ name, email });
+    userRouter.post("/",validateBody(ZNewUser), async (req: Request, res: Response, next: NextFunction) => {
+        const user = await service.createUser(req.body);
         res.status(201).json(user);
     })
 
