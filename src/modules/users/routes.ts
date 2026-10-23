@@ -26,7 +26,7 @@ export const createUsersRouter = (service: UserService): Router => {
     })
 
     //  POST /,
-    userRouter.post("/",validateBody(ZNewUser), async (req: Request, res: Response, next: NextFunction) => {
+    userRouter.post("/",validateBody(ZNewUser), async (req: Request, res: Response) => {
         const user = await service.createUser(req.body);
         res.status(201).json(user);
     })
