@@ -2,8 +2,8 @@ import type { Router, Request, Response, NextFunction } from "express";
 import express from "express";
 import type { UserService } from "./service.js";
 import { createAppError } from "../../errors/app-error.js";
-import { validateBody } from "../../middlewares/validateBody.js";
 import { ZNewUser } from "./schema.js";
+import { withValidateBody } from "../../utils/withValidatedBody.js";
 
 export const createUsersRouter = (service: UserService): Router => {
 
@@ -26,10 +26,10 @@ export const createUsersRouter = (service: UserService): Router => {
     })
 
     //  POST /,
-    userRouter.post("/",validateBody(ZNewUser), async (req: Request, res: Response) => {
+    userRouter.post("/", ...withValidateBody(ZNewUser, async (req, res) => {
         const user = await service.createUser(req.body);
         res.status(201).json(user);
-    })
+    }));
 
     //DELETE
     userRouter.delete("/:id", async (req: Request<{ id: string }>, res: Response, next: NextFunction) => {
