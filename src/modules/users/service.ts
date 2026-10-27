@@ -18,6 +18,7 @@ export const createUserService = (repo: UserRepo) => {
     };
 
     const createUser = async (input: NewUser): Promise<User> => {
+        input.email = input.email.trim().toLowerCase();
         const user = await repo.findByEmail(input.email);
         if(user) throw createAppError(409, "user already exists")
         return repo.create(input);
